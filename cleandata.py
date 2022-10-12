@@ -15,7 +15,6 @@ amount_min = df[df['amount'] < 5000]
 dt = pd.DataFrame({'journal':amount_min['journal'],'journal < 5000':amount_min['amount']})
 # dt.to_csv('C:/Users/ttkph/Desktop/amount_crawl.csv', index=False, encoding='utf-8')
 # df.plot(color = 'lightpink')
-# plt.title('Springer-v1-train')
-# plt.ylabel('Sum')
+# plt.title('springer-v1-train.jsonl')
 # plt.xlabel('journal')
 # plt.show()

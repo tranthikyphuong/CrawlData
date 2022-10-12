@@ -19,11 +19,12 @@ def crawlCategories():
         URLsearch = url('https://link.springer.com/search?query='+str(x)+'&facet-content-type=%22Journal%22')
         for _cate in URLsearch.find_all('span',{'class' : 'facet-title'}):
             categories.append(_cate.get_text())
-        print("crawled name:  " + str(x))
+    print("crawled name:  " + str(x))
     return categories
+print(crawlCategories())
 def startCrawl():
     displayCates = crawlCategories()
     print(displayCates)
-    df = pd.DataFrame({'Name': name.journal,'Discipline': displayCates}) 
-    df.to_csv('C:/Users/ttkph/Desktop/categories-Springer-v1-train.csv', index=False, encoding='utf-8')
-startCrawl()
+    # df = pd.DataFrame({'Name': name.journal,'Discipline': displayCates}) 
+    # df.to_csv('C:/Users/ttkph/Desktop/categories-Springer-v1-train.csv', index=False, encoding='utf-8')
+# startCrawl()
