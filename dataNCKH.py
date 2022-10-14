@@ -28,22 +28,22 @@ def crawlCategories():
         print("crawled name:  " + str(x))
     return categories
 def sub_discipline_facet():
-    sub = []
     string = []
     for x in name.journal:
+        sub = []
         test = False
         URLsearch = url('https://link.springer.com/search?query='+str(x)+'&facet-content-type=%22Journal%22')
         for _sub in URLsearch.find('div', { 'id': 'sub-discipline-facet' }).find_all('span', { 'class': 'facet-title' }):
             test = True
             sub.append(_sub.get_text())
+        string.append(",".join(sub))
         if test == False:
             sub.append('Erro')
-    for s in sub:
-        string += ', ' + s
-    return  string[1:] 
+        print("crawled name Sub:  " + str(x))
+    return string
 def startCrawl():
     displayCates = crawlCategories()
     sub_discipline = sub_discipline_facet()
-    df = pd.DataFrame({'Name': name.journal,'Discipline': displayCates,'Sub-Discipline': sub_discipline}) 
+    df = pd.DataFrame({'Name': name.journal,'Discipline':displayCates,'Sub=Discipline': sub_discipline}) 
     df.to_csv('C:/Users/ttkph/Desktop/categories-Springer-v1-train.csv', index=False, encoding='utf-8')
 startCrawl()
